@@ -19,15 +19,11 @@ public class ShotKeyHandler extends KeyHandler {
 
 	@Override
 	public String getLabel() {
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
 	@Override
-	public void keyDown(EnumSet<TickType> types, KeyBinding kb,
-			boolean tickEnd, boolean isRepeat) {
-		// TODO 自動生成されたメソッド・スタブ
-
+	public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
 	}
 
 	@Override
@@ -38,8 +34,6 @@ public class ShotKeyHandler extends KeyHandler {
 				mc.thePlayer.openGui(ModdersPolaroid2.instance, Config.guiId, mc.theWorld, (int)mc.thePlayer.posX, (int)mc.thePlayer.posY, (int)mc.thePlayer.posZ);
 			}
 		}
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override

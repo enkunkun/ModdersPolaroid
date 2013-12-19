@@ -24,7 +24,6 @@ public class GuiKeyHandler extends KeyHandler {
 
 	@Override
 	public String getLabel() {
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
@@ -55,8 +54,6 @@ public class GuiKeyHandler extends KeyHandler {
 
 	@Override
 	public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override
