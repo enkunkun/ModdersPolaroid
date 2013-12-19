@@ -25,6 +25,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
@@ -39,6 +40,7 @@ import org.lwjgl.opengl.GL12;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class GuiPolaroid extends GuiContainer {
+	private static final ResourceLocation craftingTableGuiTextures = new ResourceLocation("textures/gui/container/crafting_table.png");
 	protected static RenderItem itemRenderer = new RenderItem();
 	private int imageWidth = 175;
 	private int imageHeight = 165;
@@ -424,7 +426,7 @@ public class GuiPolaroid extends GuiContainer {
 			BufferedImage trimmingImage = bufferedimage.getSubimage(x, y, w, h);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
 			String dateStr = sdf.format(date);
-			File screenshotsDir = new File(mc.getMinecraftDir(), "screenshots");
+			File screenshotsDir = new File(mc.mcDataDir, "screenshots");
 			File dir = new File(screenshotsDir, dateStr);
 			dir.mkdir();
 
@@ -436,7 +438,7 @@ public class GuiPolaroid extends GuiContainer {
 				outputItemName = itemStack.getDisplayName();
 			}
 			else {
-				outputItemName = itemStack.getItemName();
+				outputItemName = itemStack.getUnlocalizedName();
 			}
 			String fileName = String.valueOf(n) + "_" + outputItemName;
 			File file = new File(dir, fileName + ".png");
@@ -494,7 +496,7 @@ public class GuiPolaroid extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2,
 			int par3) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture("/gui/crafting.png");
+		this.mc.renderEngine.bindTexture(craftingTableGuiTextures);
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
