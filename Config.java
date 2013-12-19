@@ -11,9 +11,9 @@ public class Config {
 
 	public static int guiId = 56;
 	public static int x = 306;
-	public static int y = 85;
-	public static int width = 235;
-	public static int height = 131;
+	public static int y = 104;
+	public static int width = 236;
+	public static int height = 112;
 	public static int interval = 20;
 	public static int start;
 	public void load(File file) {
