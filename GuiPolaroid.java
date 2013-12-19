@@ -428,7 +428,7 @@ public class GuiPolaroid extends GuiContainer {
 			String dateStr = sdf.format(date);
 			File screenshotsDir = new File(mc.mcDataDir, "screenshots");
 			File dir = new File(screenshotsDir, dateStr);
-			dir.mkdir();
+			dir.mkdirs();
 
 			String outputItemName;
 			if(itemStack == null) {
