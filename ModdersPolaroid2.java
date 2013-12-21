@@ -10,7 +10,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-@Mod(modid = "ModdersPolaroid2", name = "ModdersPolaroid2", version = "1.0")
+@Mod(modid = "ModdersPolaroid2", name = "ModdersPolaroid2", version = "1.6.4.6")
 public class ModdersPolaroid2 {
 	@SidedProxy(clientSide = "modderspolaroid2.ClientProxy", serverSide = "modderspolaroid2.CommonProxy")
 	public static CommonProxy proxy;
