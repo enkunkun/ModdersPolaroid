@@ -32,6 +32,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -430,18 +431,27 @@ public class GuiPolaroid extends GuiContainer {
 			File dir = new File(screenshotsDir, dateStr);
 			dir.mkdirs();
 
-			String outputItemName;
+			String outputItemName = "";
 			if(itemStack == null) {
 				return;
 			}
-			else if(itemStack.getDisplayName() != null) {
-				outputItemName = itemStack.getDisplayName();
+			
+			if (Config.oldFileName) {
+				if(itemStack.getDisplayName() != null) {
+					outputItemName = itemStack.getDisplayName();
+				}
+				else {
+					outputItemName = itemStack.getUnlocalizedName();
+				}
+				outputItemName = String.valueOf(n) + "_" + outputItemName;
+			} else {
+				String name = itemStack.getUnlocalizedName();
+				String[] str = name.split("\\.");
+				for (String s : str) {
+					outputItemName += StringUtils.capitalize(s);
+				}
 			}
-			else {
-				outputItemName = itemStack.getUnlocalizedName();
-			}
-			String fileName = String.valueOf(n) + "_" + outputItemName;
-			File file = new File(dir, fileName + ".png");
+			File file = new File(dir, outputItemName + ".png");
 
 			if(file.exists()) {
 				return;

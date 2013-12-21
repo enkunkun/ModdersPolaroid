@@ -16,6 +16,7 @@ public class Config {
 	public static int height = 112;
 	public static int interval = 20;
 	public static int start;
+	public static boolean oldFileName;
 	public void load(File file) {
 		Configuration cfg = new Configuration(file);
 		try {
@@ -27,6 +28,7 @@ public class Config {
 			width = cfg.get(Configuration.CATEGORY_GENERAL, "width", width).getInt();
 			height = cfg.get(Configuration.CATEGORY_GENERAL, "height", height).getInt();
 			start = cfg.get(Configuration.CATEGORY_GENERAL, "start", CraftingManager.getInstance().getRecipeList().size() - 1).getInt();
+			oldFileName = cfg.get(Configuration.CATEGORY_GENERAL, "oldFileName", false, "Legacy: 265_Magenta Dye.png\nNew: ItemDyePowderMagenta.png").getBoolean(false);
 			cfg.save();
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, "Modder's Polaroid2 load config exception");
