@@ -77,34 +77,31 @@ public class GuiPolaroid extends GuiContainer {
 			((Slot)this.inventorySlots.inventorySlots.get(i)).putStack(null);
 		}
 		boolean dicEnd = true;
+		boolean needSaveScreenShot = false;
 		IRecipe recipe = (IRecipe)obj;
 		if(obj instanceof ShapedRecipes) {
 			drawShapedRecipes((ShapedRecipes) obj);
-			if(auto) {
-				saveScreenshot(index, recipe.getRecipeOutput());
-			}
+			needSaveScreenShot = true;
 		}
 		else if(obj instanceof ShapelessRecipes) {
 			drawShapelessRecipes((ShapelessRecipes) obj);
-			if(auto) {
-				saveScreenshot(index, recipe.getRecipeOutput());
-			}
+			needSaveScreenShot = true;
 		}
 		else if(obj instanceof ShapedOreRecipe) {
 			dicEnd = drawShapedOreRecipe((ShapedOreRecipe) obj);
-			if(auto) {
-				saveScreenshot(index, recipe.getRecipeOutput());
-			}
+			needSaveScreenShot = true;
 		}
 		else if(obj instanceof ShapelessOreRecipe) {
 			dicEnd = drawShapelessOreRecipe((ShapelessOreRecipe) obj);
-			if(auto) {
-				saveScreenshot(index, recipe.getRecipeOutput());
-			}
+			needSaveScreenShot = true;
 		}
 
 		if(auto) {
-			if(tick++ > Config.interval) {
+			tick++;
+			if(tick == Config.interval) {
+			saveScreenshot(index, recipe.getRecipeOutput());
+			}
+			if(tick > Config.interval) {
 				if(dicEnd) {
 					if(index < CraftingManager.getInstance().getRecipeList().size() - 1) {
 						index++;
@@ -446,6 +443,8 @@ public class GuiPolaroid extends GuiContainer {
 				outputItemName = String.valueOf(n) + "_" + outputItemName;
 			} else {
 				String name = itemStack.getUnlocalizedName();
+				// Windowsでファイル名に使用できない文字を「.」に置換
+				name = name.replaceAll("[/:*?\"<>|]", ".");
 				String[] str = name.split("\\.");
 				for (String s : str) {
 					outputItemName += StringUtils.capitalize(s);
