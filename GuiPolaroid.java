@@ -98,8 +98,8 @@ public class GuiPolaroid extends GuiContainer {
 
 		if(auto) {
 			tick++;
-			if(tick == Config.interval) {
-			saveScreenshot(index, recipe.getRecipeOutput());
+			if(tick == Config.interval && needSaveScreenShot) {
+				saveScreenshot(index, recipe.getRecipeOutput());
 			}
 			if(tick > Config.interval) {
 				if(dicEnd) {
